@@ -1,15 +1,27 @@
 This is a short, sample Rails app for screening with TrueX.
 
 Prompt:
+
 Creating your flavor of a Twitter Clone using Rails!
+
 Requirements (in priority order):
+
 ·  Host this application on Heroku (free options should be fine)
+
 ·  Uses the Twitter API
+
 ·  Does not require a login (Application-only authentication)
+
 ·  Visiting the home page defaults to a user page with the last 20 tweets from @trueX
+
 ·  Any @name in a tweet should link to a user page (can be same format as the home page), also with the last 20 tweets for that user
+
 ·  Hovering over any @names in tweets will bring up a modal/tooltip giving a description of that user (# tweets, # of followers)
+
 ·  Cache identical twitter API calls for 5 minutes (first calls don't need to be cached)
+
 ·  Make it pretty however you wish :)
+
 ·  Tests! (doesn't have to be 100% coverage)
+
 ·  Send me the URL and github repo once you're done
