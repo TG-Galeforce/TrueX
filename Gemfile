@@ -10,6 +10,8 @@ gem 'jbuilder',             '2.2.3'
 gem 'sdoc',                 '0.4.0', group: :doc
 
 gem 'twitter'
+gem 'tweetstream'
+gem 'yajl-ruby', require: 'yajl'
 
 group :development, :test do
   gem 'sqlite3',     '1.3.9'
