@@ -11,6 +11,13 @@ TweetStream.configure do |config|
 	config.parser = :yajl
 end
 
-TweetStream::Daemon.new('follower').follow(202759325) do |status|
-  puts "#{status.text}"
+daemon = TweetStream::Daemon.new('follower')
+daemon.on_inited do
+  ActiveRecord::Base.connection.reconnect!
+  ActiveRecord::Base.logger = Logger.new(File.open('log/stream.log', 'w+'))
+end
+#The below block never executes atm.
+daemon.follow(202759325) do |tweet|
+  Status.create_from_tweet(tweet)
+  puts `echo "hiiiiiiii" > foo.txt`
 end
