@@ -1,6 +1,6 @@
-require 'rubygems'
-require 'tweetstream'
-require 'yajl'
+# require 'rubygems'
+# require 'tweetstream'
+# require 'yajl'
 
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
