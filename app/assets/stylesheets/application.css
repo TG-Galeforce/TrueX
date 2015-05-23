@@ -13,3 +13,21 @@
  *= require_tree .
  *= require_self
  */
+
+h1 {
+	color: green;
+}
+
+h3 {
+	color: aliceblue;
+}
+
+body{
+	/*background:url(http://i.imgur.com/lGjlXUF.gif)no-repeat;*/
+	background:url(http://hdw.datawallpaper.com/nature/pretty-flowers-desktop-background-333544.jpg) fixed right top;
+	background-size: cover;
+}
+
+.days-ago {
+	color: red;
+}

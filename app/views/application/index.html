@@ -4,11 +4,15 @@
 	hello, world!
 </div>
 
+<h1>
+	Recent tweets by TrueX:
+</h1>
+
 <ul>
   <% @tweets.each do |f| %>
     <li>
-      <%= f.text%>
-      <span><%= time_ago_in_words(f.created_at) %> ago</span>
+      <h3><%= f.text%></h3>
+      <span class="days-ago">-Tweeted <%= time_ago_in_words(f.created_at) %> ago</span>
     </li>
   <% end %>
 </ul>
