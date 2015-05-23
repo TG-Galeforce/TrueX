@@ -25,10 +25,17 @@ class ApplicationController < ActionController::Base
   def hello
 		client = init_client
 		timeline = get_timeline(client)
+		timeline_processed = []
 		for tweet in timeline
-			puts tweet.text
+			u_mentions = tweet.user_mentions
+
+			tweet_processed = {}
+			text_processed = "<h3>" + tweet.text + "</h3>"
+			tweet_processed['text'] = text_processed
+			tweet_processed['created_at'] = tweet.created_at;
+			timeline_processed.append(tweet_processed)
 		end
-		@tweets = timeline
+		@tweets = timeline_processed
 
     render template: "application/index"
   end

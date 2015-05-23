@@ -11,8 +11,8 @@
 <ul>
   <% @tweets.each do |f| %>
     <li>
-      <h3><%= f.text%></h3>
-      <span class="days-ago">-Tweeted <%= time_ago_in_words(f.created_at) %> ago</span>
+      <h3><%= raw f['text']%></h3>
+      <span class="days-ago">-Tweeted <%= time_ago_in_words(f['created_at']) %> ago</span>
     </li>
   <% end %>
 </ul>
