@@ -30,7 +30,23 @@ class ApplicationController < ActionController::Base
 			u_mentions = tweet.user_mentions
 
 			tweet_processed = {}
-			text_processed = "<h3>" + tweet.text + "</h3>"
+			tweet_text = tweet.text
+
+			text_split = []
+			last_ind = 0
+			for m in u_mentions
+				inds = m.indices
+				w1 = tweet_text[last_ind..inds[0]-1]
+				w2 = tweet_text[inds[0]..inds[1]-1] #The name
+				text_split.append(w1)
+				text_split.append(w2)
+				last_ind = inds[1]
+			end
+			wlast = tweet_text[last_ind..-1]
+			text_split.append(wlast)
+
+			text_processed = text_split.join
+
 			tweet_processed['text'] = text_processed
 			tweet_processed['created_at'] = tweet.created_at;
 			timeline_processed.append(tweet_processed)
