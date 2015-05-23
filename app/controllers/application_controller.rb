@@ -19,12 +19,16 @@ class ApplicationController < ActionController::Base
 
   def hello
 		client = init_client
+		timeline = client.user_timeline(202759325)
+		# puts timeline
+		for tweet in timeline
+			puts tweet.text
+		end
 
     render template: "application/index"
-		# client.user_timeline("client")
-		client.user do |object|
-		  puts object.text if object.is_a?(Twitter::Tweet)
-		end
+		# client.user do |object|
+		#   puts object.text if object.is_a?(Twitter::Tweet)
+		# end
   end
 
 end
