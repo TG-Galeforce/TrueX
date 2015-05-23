@@ -202,6 +202,7 @@ DEPENDENCIES
   coffee-rails (= 4.1.0)
   jbuilder (= 2.2.3)
   jquery-rails (= 4.0.3)
+  json
   pg (= 0.17.1)
   rails (= 4.2.0)
   rails_12factor (= 0.0.2)
