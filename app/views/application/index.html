@@ -3,3 +3,12 @@
 <div>
 	hello, world!
 </div>
+
+<ul>
+  <% @tweets.each do |f| %>
+    <li>
+      <%= f.text%>
+      <span><%= time_ago_in_words(f.created_at) %> ago</span>
+    </li>
+  <% end %>
+</ul>

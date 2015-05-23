@@ -17,18 +17,20 @@ class ApplicationController < ActionController::Base
 	  return client
 	end
 
+	def get_timeline(client)
+		timeline = client.user_timeline(202759325)
+		return timeline		
+	end
+
   def hello
 		client = init_client
-		timeline = client.user_timeline(202759325)
-		# puts timeline
+		timeline = get_timeline(client)
 		for tweet in timeline
 			puts tweet.text
 		end
+		@tweets = timeline
 
     render template: "application/index"
-		# client.user do |object|
-		#   puts object.text if object.is_a?(Twitter::Tweet)
-		# end
   end
 
 end
