@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
 	def user_tweets
 		user_id = 202759325
 		if params[:uid]
-			user_id = params[:uid]
+			user_id = params[:uid].to_i
 		end
 
 		client = init_client
