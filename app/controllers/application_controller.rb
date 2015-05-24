@@ -29,7 +29,10 @@ class ApplicationController < ActionController::Base
 		end
 
 		client = init_client
-		timeline = get_timeline(client, user_id)
+		expires_in 5.minutes, :public => false
+		timeline = Rails.cache.fetch(:timeline) do
+			timeline = get_timeline(client, user_id)
+		end
 		timeline_processed = []
 		for tweet in timeline
 			u_mentions = tweet.user_mentions
