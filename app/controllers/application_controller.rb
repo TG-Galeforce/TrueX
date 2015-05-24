@@ -23,10 +23,9 @@ class ApplicationController < ActionController::Base
 	end
 
 	def user_tweets
+		user_id = 202759325
 		if params[:uid]
 			user_id = params[:uid]
-		else
-			user_id = 202759325
 		end
 
 		client = init_client
@@ -55,7 +54,6 @@ class ApplicationController < ActionController::Base
 
 			tweet_processed['text'] = text_processed
 			tweet_processed['created_at'] = tweet.created_at;
-			puts tweet_processed
 			timeline_processed.append(tweet_processed)
 		end
 
