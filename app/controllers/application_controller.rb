@@ -59,6 +59,7 @@ class ApplicationController < ActionController::Base
 
 		@tweets = timeline_processed
 		@uid = user_id
+		@uname = client.user(user_id).screen_name
     render template: "application/index"
 	end
 
