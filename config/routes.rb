@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
   root 'application#hello'
+  get '/users/:uid', to: 'application#user_tweets'
   # root 'application#twitter_stream'
 
   # Example of regular route:

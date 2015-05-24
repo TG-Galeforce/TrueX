@@ -17,14 +17,20 @@ class ApplicationController < ActionController::Base
 	  return client
 	end
 
-	def get_timeline(client)
-		timeline = client.user_timeline(202759325)
+	def get_timeline(client, user_id)
+		timeline = client.user_timeline(user_id)
 		return timeline		
 	end
 
-  def hello
+	def user_tweets
+		if params[:uid]
+			user_id = params[:uid]
+		else
+			user_id = 202759325
+		end
+
 		client = init_client
-		timeline = get_timeline(client)
+		timeline = get_timeline(client, user_id)
 		timeline_processed = []
 		for tweet in timeline
 			u_mentions = tweet.user_mentions
@@ -37,7 +43,7 @@ class ApplicationController < ActionController::Base
 			for m in u_mentions
 				inds = m.indices
 				w1 = tweet_text[last_ind..inds[0]-1]
-				w2 = '<a href="foo">' + tweet_text[inds[0]..inds[1]-1] + '</a>' #The name
+				w2 = '<a href="/users/' + m.id.to_s + '">' + tweet_text[inds[0]..inds[1]-1] + '</a>' #The name
 				text_split.append(w1)
 				text_split.append(w2)
 				last_ind = inds[1]
@@ -52,9 +58,14 @@ class ApplicationController < ActionController::Base
 			puts tweet_processed
 			timeline_processed.append(tweet_processed)
 		end
-		@tweets = timeline_processed
 
+		@tweets = timeline_processed
+		@uid = user_id
     render template: "application/index"
+	end
+
+  def hello
+  	user_tweets
   end
 
 end
