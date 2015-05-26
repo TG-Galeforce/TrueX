@@ -29,42 +29,43 @@ class ApplicationController < ActionController::Base
 		end
 
 		client = init_client
-		expires_in 5.minutes, :public => false
-		timeline = Rails.cache.fetch(:timeline) do
+		# expires_in 5.minutes, :public => false
+		# timeline_processed = Rails.cache.fetch(:timeline_processed) do
 			timeline = get_timeline(client, user_id)
-		end
-		timeline_processed = []
-		for tweet in timeline
-			u_mentions = tweet.user_mentions
+			tl_p = []
+			for tweet in timeline
+				u_mentions = tweet.user_mentions
 
-			tweet_processed = {}
-			tweet_text = tweet.text
+				tweet_processed = {}
+				tweet_text = tweet.text
 
-			text_split = []
-			last_ind = 0
-			for m in u_mentions
-				inds = m.indices
-				w1 = tweet_text[last_ind..inds[0]-1]
+				text_split = []
+				last_ind = 0
+				for m in u_mentions
+					inds = m.indices
+					w1 = tweet_text[last_ind..inds[0]-1]
 
-				c_user = client.user(m.id)
-				followers_cnt = c_user.followers_count
-				statuses_cnt = c_user.statuses_count
-				title_text = '" title="' + statuses_cnt.to_s + ' tweets, ' + followers_cnt.to_s + ' followers' + '">'
+					c_user = client.user(m.id)
+					followers_cnt = c_user.followers_count
+					statuses_cnt = c_user.statuses_count
+					title_text = '" title="' + statuses_cnt.to_s + ' tweets, ' + followers_cnt.to_s + ' followers' + '">'
 
-				w2 = '<a href="/users/' + m.id.to_s + title_text + tweet_text[inds[0]..inds[1]-1] + '</a>' #The name
-				text_split.append(w1)
-				text_split.append(w2)
-				last_ind = inds[1]
+					w2 = '<a href="/users/' + m.id.to_s + title_text + tweet_text[inds[0]..inds[1]-1] + '</a>' #The name
+					text_split.append(w1)
+					text_split.append(w2)
+					last_ind = inds[1]
+				end
+				wlast = tweet_text[last_ind..-1]
+				text_split.append(wlast)
+
+				text_processed = text_split.join
+
+				tweet_processed['text'] = text_processed
+				tweet_processed['created_at'] = tweet.created_at;
+				tl_p.append(tweet_processed)
 			end
-			wlast = tweet_text[last_ind..-1]
-			text_split.append(wlast)
-
-			text_processed = text_split.join
-
-			tweet_processed['text'] = text_processed
-			tweet_processed['created_at'] = tweet.created_at;
-			timeline_processed.append(tweet_processed)
-		end
+			timeline_processed = tl_p
+		# end
 
 		@tweets = timeline_processed
 		@uid = user_id
