@@ -14,12 +14,16 @@
  *= require_self
  */
 
+html {
+	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+}
+
 h1 {
-	color: green;
+	color: #aa00cc;
 }
 
 h3 {
-	color: aliceblue;
+	color: navy;
 }
 
 body{
@@ -28,12 +32,12 @@ body{
 }
 
 .lighten{
-	background:rgba(180,180,180,0.5);
+	background:rgba(180,180,180,0.7);
 	z-index: 1000;
 	width: 100%;
 	height: 100%;
 }
 
 .days-ago {
-	color: red;
+	color: navy;
 }

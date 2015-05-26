@@ -1,18 +1,22 @@
-<title><%= @uname %></title>
+<html>
 
-<div style="display: none;">
-	hello, world!
-</div>
+	<title><%= @uname %></title>
 
-<h1>
-	Recent tweets by <%= @uname %>:
-</h1>
-<ul class="lighten">
-  <% @tweets.each do |f| %>
-    <li>
-      <h3><%= raw f['text'] %></h3>
-      <span class="days-ago">-Tweeted <%= time_ago_in_words(f['created_at']) %> ago</span>
-    </li>
-    <hr>
-  <% end %>
-</ul>
+	<div style="display: none;">
+		hello, world!
+	</div>
+
+	<h1>
+		Recent tweets by <%= @uname %>:
+	</h1>
+	<ul class="lighten">
+	  <% @tweets.each do |f| %>
+	    <li>
+	      <h3><%= raw f['text'] %></h3>
+	      <span class="days-ago">-Tweeted <%= time_ago_in_words(f['created_at']) %> ago</span>
+	    </li>
+	    <hr>
+	  <% end %>
+	</ul>
+
+</html>
