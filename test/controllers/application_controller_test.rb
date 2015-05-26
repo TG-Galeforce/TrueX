@@ -9,7 +9,7 @@ class ApplicationControllerTest < ActionController::TestCase
     assert_response :success
     assert_select "title", "TrueX"
     assert_select "div", "hello, world!"
-    assert_select "h1", "Recent tweets by trueX"
+    assert_select "h1", "Recent tweets by trueX:"
   end
 
 end
